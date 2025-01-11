@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatmaker - An Indie Beatmaker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <style>
+        * {
+            font-family: 'Press Start 2P', cursive;
+        }
+        .pad {
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .pad:active, .pad.active {
+            transform: scale(0.95);
+            opacity: 0.8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            transition: all 0.2s ease;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .keyboard-hint {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 8px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl mb-4 text-pink-500 animate-pulse">beatmaker</h1>
+            <div class="flex justify-center gap-4 mb-6">
+                <button id="startAudioBtn" class="btn bg-yellow-500 hover:bg-yellow-600 px-6 py-3 text-xs rounded-lg">START AUDIO</button>
+                <button id="playBtn" class="btn bg-green-500 hover:bg-green-600 px-6 py-3 text-xs rounded-lg">PLAY</button>
+                <button id="recordBtn" class="btn bg-red-500 hover:bg-red-600 px-6 py-3 text-xs rounded-lg">REC</button>
+                <button id="saveBtn" class="btn bg-blue-500 hover:bg-blue-600 px-6 py-3 text-xs rounded-lg">EXPORT BEAT</button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-4 gap-4 mb-8">
+            <div data-sound="kick" class="pad bg-pink-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                KICK
+                <span class="keyboard-hint">1</span>
+            </div>
+            <div data-sound="snare" class="pad bg-purple-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                SNARE
+                <span class="keyboard-hint">2</span>
+            </div>
+            <div data-sound="hihat" class="pad bg-blue-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                HIHAT
+                <span class="keyboard-hint">3</span>
+            </div>
+            <div data-sound="clap" class="pad bg-green-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                CLAP
+                <span class="keyboard-hint">4</span>
+            </div>
+            <div data-sound="synth1" class="pad bg-yellow-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                SYNTH 1
+                <span class="keyboard-hint">Q</span>
+            </div>
+            <div data-sound="synth2" class="pad bg-red-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                SYNTH 2
+                <span class="keyboard-hint">W</span>
+            </div>
+            <div data-sound="bass" class="pad bg-indigo-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                BASS
+                <span class="keyboard-hint">E</span>
+            </div>
+            <div data-sound="fx" class="pad bg-teal-600 h-24 rounded-lg cursor-pointer flex items-center justify-center text-xs relative">
+                FX
+                <span class="keyboard-hint">R</span>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <p id="recordingStatus" class="text-xs mb-2 text-gray-400 animate-pulse">Click START AUDIO to begin!</p>
+            <p id="timer" class="text-lg text-pink-500">00:00</p>
+        </div>
+
+        <footer class="text-center mt-8 text-xs text-gray-500">
+            <p>Keyboard shortcuts shown in corners of pads</p>
+            <p class="mt-2">Made for <a class="text-pink-500" href="https://highseas.hackclub.com">highseas</a> by <a class="text-pink-500" href="https://github.com/divpreeet">divpreet</a></p>
+        </footer>
+    </div>
+
+    <script src="/src/script.js"></script>
+</body>
+</html>
